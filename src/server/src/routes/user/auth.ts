@@ -1,14 +1,45 @@
 import { Router } from "express";
+import { requireAuth } from "../../middlewares/require-auth";
+import { validateRequest } from "../../middlewares/validate-request";
+import {
+  currentUser,
+  forgotPassword,
+  forgotPasswordValidators,
+  login,
+  loginValidators,
+  logout,
+  register,
+  registerValidators,
+  resetPassword,
+  resetPasswordValidators,
+  verifyResetPasswordCode,
+  verifyResetPasswordCodeValidators,
+} from "../../handlers/user/auth";
 
 const router = Router();
 
-router.get("/current-user");
+router.get("/current-user", requireAuth, validateRequest, currentUser);
 
-router.post("/login");
-router.post("/register");
-router.post("/logout");
-router.post("/forgot-password");
-router.post("/verify-reset-password-code");
-router.post("/reset-password");
+router.post("/login", loginValidators, validateRequest, login);
+router.post("/register", registerValidators, validateRequest, register);
+router.post("/logout", logout);
+router.post(
+  "/forgot-password",
+  forgotPasswordValidators,
+  validateRequest,
+  forgotPassword
+);
+router.post(
+  "/verify-reset-password-code",
+  verifyResetPasswordCodeValidators,
+  validateRequest,
+  verifyResetPasswordCode
+);
+router.post(
+  "/reset-password",
+  resetPasswordValidators,
+  validateRequest,
+  resetPassword
+);
 
 export { router as userAuthRouter };
