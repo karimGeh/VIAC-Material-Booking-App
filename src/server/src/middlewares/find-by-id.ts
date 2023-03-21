@@ -5,7 +5,7 @@ import { isValidObjectId } from "mongoose";
 import { BadRequestError } from "../errors/bad-request-error";
 
 export const getMaterialById: RequestParamHandler = async (
-  _,
+  req,
   __,
   next,
   id: string
@@ -14,11 +14,12 @@ export const getMaterialById: RequestParamHandler = async (
     throw new BadRequestError("Invalid id");
   }
   const material = await Material.findById(id).populate("category");
+  req.q_material = material;
   return material ? next() : next(new NotFoundError());
 };
 
 export const getMaterialCategoryById: RequestParamHandler = async (
-  _,
+  req,
   __,
   next,
   id: string
@@ -28,11 +29,12 @@ export const getMaterialCategoryById: RequestParamHandler = async (
     throw new BadRequestError("Invalid id");
   }
   const materialCategory = await MaterialCategory.findById(id);
+  req.q_materialCategory = materialCategory;
   return materialCategory ? next() : next(new NotFoundError());
 };
 
 export const getReservationById: RequestParamHandler = async (
-  _,
+  req,
   __,
   next,
   id: string
@@ -45,11 +47,12 @@ export const getReservationById: RequestParamHandler = async (
     "user",
     "owner",
   ]);
+  req.q_reservation = reservation;
   return reservation ? next() : next(new NotFoundError());
 };
 
 export const getUserById: RequestParamHandler = async (
-  _,
+  req,
   __,
   next,
   id: string
@@ -58,5 +61,6 @@ export const getUserById: RequestParamHandler = async (
     throw new BadRequestError("Invalid id");
   }
   const user = await User.findById(id);
+  req.q_user = user;
   return user ? next() : next(new NotFoundError());
 };

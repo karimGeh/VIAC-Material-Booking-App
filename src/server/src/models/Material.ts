@@ -2,6 +2,8 @@ import mongoose, { ObjectId } from "mongoose";
 import { MaterialState } from "../enums/MaterialState";
 import { MaterialCategoryDoc } from "./MaterialCategory";
 import { ModelsNames } from "./_modelsNames";
+import { Reservation } from "./Reservation";
+import { ReservationStatus } from "../enums/ReservationStatus";
 export interface MaterialAttrs {
   type: MaterialCategoryDoc;
   ref: string;
@@ -15,6 +17,8 @@ export interface MaterialAttrs {
 export interface MaterialDoc extends mongoose.Document, MaterialAttrs {
   createdAt: Date;
   updatedAt: Date;
+
+  isAvailable(startDate: Date, endDate: Date): Promise<boolean>;
 }
 
 export const MaterialSchema = new mongoose.Schema<MaterialDoc>(
@@ -70,6 +74,21 @@ export interface MaterialModel extends mongoose.Model<MaterialDoc> {
 MaterialSchema.statics.build = (attrs: MaterialAttrs) => {
   return new Material(attrs);
 };
+
+MaterialSchema.methods.isAvailable = async function (
+  startDate: Date,
+  endDate: Date
+) {
+  const material = this as MaterialDoc;
+  const reservations = await Reservation.find({
+    material: material._id,
+    startDate: { $gte: startDate, $lte: endDate },
+    endDate: { $gte: startDate, $lte: endDate },
+    status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
+  });
+  return reservations.length === 0;
+};
+
 export const Material = mongoose.model<MaterialDoc, MaterialModel>(
   ModelsNames.Material,
   MaterialSchema
