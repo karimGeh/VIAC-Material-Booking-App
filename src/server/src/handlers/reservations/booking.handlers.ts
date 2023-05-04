@@ -60,3 +60,25 @@ export const getReservationsByUser: RequestHandler = async (req, res) => {
     reservations,
   });
 };
+
+export const cancelReservation: RequestHandler = async (req, res) => {
+  const reservation = req.q_reservation;
+  reservation.status = ReservationStatus.cancelled;
+  reservation.cancelledAt = new Date();
+  await reservation.save();
+  res.send({
+    success: true,
+    reservation,
+  });
+};
+
+export const returnMaterial: RequestHandler = async (req, res) => {
+  const reservation = req.q_reservation;
+  reservation.status = ReservationStatus.returned;
+  reservation.returnedAt = new Date();
+  await reservation.save();
+  res.send({
+    success: true,
+    reservation,
+  });
+};
