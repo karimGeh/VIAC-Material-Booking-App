@@ -9,6 +9,7 @@ export interface MaterialAttrs {
   ref: string;
   state: MaterialState;
   barcode: string;
+  macAddress: string;
 
   compatibleWith: MaterialCategoryDoc[] | ObjectId[];
   compatibleWithMe: MaterialDoc[] | ObjectId[];
@@ -39,6 +40,11 @@ export const MaterialSchema = new mongoose.Schema<MaterialDoc>(
       enum: MaterialState,
     },
     barcode: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    macAddress: {
       type: String,
       required: true,
       unique: true,
