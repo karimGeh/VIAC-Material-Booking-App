@@ -3,5 +3,6 @@ export enum UserTypes {
   admin = "admin",
   normal = "normal",
   guest = "guest",
+  pending = "pending",
   blocked = "blocked",
 }
