@@ -13,7 +13,7 @@ export const register: RequestHandler = async (req, res) => {
     phoneNum,
     email,
     password,
-    type: UserTypes.guest,
+    type: UserTypes.pending,
   });
 
   await newUser.save();
