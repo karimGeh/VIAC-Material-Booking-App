@@ -1,0 +1,42 @@
+/* Color Theme Swatches in Hex */
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-hex: #353940;
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-hex: #4B7DBF;
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-hex: #84A9D9;
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-hex: #AAB5BF;
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-hex: #F2F2F2;
+
+/* Color Theme Swatches in RGBA */
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-rgba: rgba(52,56,63, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-rgba: rgba(74,125,191, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-rgba: rgba(132,168,216, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-rgba: rgba(170,181,191, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-rgba: rgba(242,242,242, 1);
+
+/* Color Theme Swatches in HSLA */
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-hsla: hsla(219, 9, 22, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-hsla: hsla(213, 47, 52, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-hsla: hsla(213, 52, 68, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-hsla: hsla(208, 14, 70, 1);
+$Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-hsla: hsla(0, 0, 95, 1);
+
+
+/* Color Theme Swatches in Hex */
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-hex { color: #353940; }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-hex { color: #4B7DBF; }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-hex { color: #84A9D9; }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-hex { color: #AAB5BF; }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-hex { color: #F2F2F2; }
+
+/* Color Theme Swatches in RGBA */
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-rgba { color: rgba(52, 56, 63, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-rgba { color: rgba(74, 125, 191, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-rgba { color: rgba(132, 168, 216, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-rgba { color: rgba(170, 181, 191, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-rgba { color: rgba(242, 242, 242, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-1-hsla { color: hsla(219, 9, 22, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-2-hsla { color: hsla(213, 47, 52, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-3-hsla { color: hsla(213, 52, 68, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-4-hsla { color: hsla(208, 14, 70, 1); }
+.Low-angle-of-extravagance-store-with-cars-in-a-row-for-sale-5-hsla { color: hsla(0, 0, 95, 1); }
