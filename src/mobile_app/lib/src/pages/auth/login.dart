@@ -2,6 +2,8 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/src/api/users/AuthClientAPI.dart';
+import 'package:mobile_app/src/api/users/AuthRequests.dart';
 import 'package:mobile_app/src/component/buttons/PrimaryButtonFill.dart';
 import 'package:mobile_app/src/component/inputs/PrimaryInput.dart';
 import 'package:mobile_app/src/layouts/ScreenWithAppBar.dart';
@@ -19,38 +21,86 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // form key
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // email controller
-  final TextEditingController _emailController = TextEditingController();
-  // password controller
-  final TextEditingController _passwordController = TextEditingController();
+  Map<String, dynamic> state = {
+    "email": '',
+    "password": '',
+  };
+
+  Map<String, dynamic> errors = {
+    "email": '',
+    "password": '',
+    'global': '',
+  };
+
   // loading state
   bool _isLoading = false;
+
+  onChange(String key) {
+    return (String value) {
+      setState(() {
+        state[key] = value;
+        errors[key] = '';
+      });
+    };
+  }
+
+  isStateValid() {
+    bool valid = true;
+    if (state["email"] == '') {
+      setState(() {
+        errors["email"] = "Email is required";
+      });
+      valid = false;
+    }
+    if (state["password"] == '') {
+      setState(() {
+        errors["password"] = "Password is required";
+      });
+      valid = false;
+    }
+    return valid;
+  }
 
   // dispose controllers
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
     super.dispose();
   }
 
   // login function
   Future<void> _login() async {
     // validate form
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
-      // send login request
-      // await loginRequest();
-      // navigate to home screen
-      Navigator.pushNamed(context, Routes.main_home);
-      setState(() {
-        _isLoading = false;
-      });
+    if (!isStateValid()) {
+      return;
     }
+    setState(() {
+      _isLoading = true;
+    });
+
+    final response = await AuthClientAPI.login(LoginRequest(
+      email: state["email"],
+      password: state["password"],
+    ));
+
+    if (response.errors.isNotEmpty) {
+      setState(() {
+        response.errors.forEach((error) {
+          String field = error.field ??
+              'global'; // use the null-aware operator to provide a fallback value
+          if (!['email', 'password'].contains(field)) {
+            field = 'global';
+          }
+          errors[field] = error.message;
+        });
+      });
+      return;
+    }
+
+    // navigate to home screen
+    // Navigator.pushNamed(context, Routes.main_home);
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   void Function() navigateTo(String routeName) {
@@ -83,19 +133,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                  errors['global'] == ''
+                      ? Container()
+                      : Text(
+                          errors['global'],
+                          style: CustomTextStyles.p(
+                            color: CustomColors.error,
+                          ),
+                        ),
+                  errors['global'] == ''
+                      ? Container()
+                      : const SizedBox(height: 24.0),
                   PrimaryInput(
-                    errorText: null,
+                    errorText: errors["email"],
                     labelText: "User ID",
-                    onChanged: () {},
+                    onChanged: onChange("email"),
                     isRequired: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your user id";
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 24.0),
                   PrimaryInput(
-                    errorText: null,
+                    errorText: errors["password"],
                     labelText: "Password",
-                    onChanged: () {},
+                    onChanged: onChange("password"),
                     isRequired: true,
                     isPassword: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your password";
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 16.0),
                   Align(
@@ -145,6 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 24.0),
                 ],
               ),
             ),

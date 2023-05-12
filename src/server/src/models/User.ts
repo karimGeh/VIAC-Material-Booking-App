@@ -50,8 +50,6 @@ export const userSchema = new mongoose.Schema<UserDoc>(
     },
     phoneNum: {
       type: String,
-      required: true,
-      unique: true,
     },
   },
   {
@@ -71,6 +69,10 @@ export interface UserModel extends mongoose.Model<UserDoc> {
 }
 
 userSchema.pre("save", async function (done) {
+  this.code = this.code.toUpperCase();
+  this.fullName = this.fullName.toUpperCase();
+  this.email = this.email.toLowerCase();
+
   if (this.isModified("password")) {
     const hashed = await Password.toHash(this.get("password"));
     this.set("password", hashed);

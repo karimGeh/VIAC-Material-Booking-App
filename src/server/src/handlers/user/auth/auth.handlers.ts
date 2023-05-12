@@ -3,6 +3,7 @@ import { Pin, User } from "../../../models";
 import { UserTypes } from "../../../enums/UserTypes";
 import { NotFoundError } from "../../../errors/not-found-error";
 import { PinTypes } from "../../../enums/PinTypes";
+import ACCESS from "../../../config/access";
 
 export const register: RequestHandler = async (req, res) => {
   const { fullName, code, phoneNum, email, password } = req.body;
@@ -27,9 +28,18 @@ export const register: RequestHandler = async (req, res) => {
 export const login: RequestHandler = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({
+    $or: [{ email: email.toLowerCase() }, { code: email.toUpperCase() }],
+    // type: {
+    //   $in: ACCESS.login,
+    // },
+  });
   if (!user) {
     throw new NotFoundError("User not found");
+  }
+
+  if (!ACCESS.login.includes(user.type)) {
+    throw new NotFoundError("You are not allowed to login");
   }
 
   const isMatch = await user.comparePassword(password);

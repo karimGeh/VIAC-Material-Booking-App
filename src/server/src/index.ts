@@ -14,9 +14,10 @@ const start = async () => {
   await connectToDatabase(DB_CONNECTION_STRING);
 
   // start the App
-  app.listen(PORT, () => {
-    console.log(`SERVER UP AND LISTENING ON PORT ${PORT}!`);
-    console.log(`server status : GET http://127.0.0.1:${PORT}/api/v1/status`);
+  const prot = PORT || 5000;
+  app.listen(prot, () => {
+    console.log(`SERVER UP AND LISTENING ON PORT ${prot}!`);
+    console.log(`server status : GET http://127.0.0.1:${prot}/api/v1/status`);
   });
 };
 

@@ -14,7 +14,7 @@ class LoadingScreen extends StatelessWidget {
   // load for 2 seconds and navigate to auth screen
   Future<void> load(BuildContext context) async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    Navigator.pushNamed(context, Routes.common_requiredPermissions);
+    Navigator.pushNamed(context, Routes.auth_login);
     Navigator.removeRoute(context, ModalRoute.of(context)!);
   }
 

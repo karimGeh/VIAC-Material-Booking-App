@@ -5,6 +5,7 @@ import { NotFoundError } from "../errors/not-found-error";
 import { userRouter } from "./user";
 import { bookingRouter } from "./booking";
 import { materialRouter } from "./material";
+import { adminRouter } from "./admin";
 
 const router = express.Router();
 
@@ -12,6 +13,7 @@ const router = express.Router();
 router.use("/user", userRouter);
 router.use("/booking", bookingRouter);
 router.use("/material", materialRouter);
+router.use("/admin", adminRouter);
 
 // status
 router.get("/status", async (_, res) => {

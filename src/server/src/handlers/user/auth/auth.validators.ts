@@ -19,7 +19,10 @@ export const registerValidators: ValidationChain[] = [
 ];
 
 export const loginValidators: ValidationChain[] = [
-  body("email").isEmail().withMessage("Email must be valid"),
+  body("email")
+    .exists()
+    .isLength({ min: 6, max: 50 })
+    .withMessage("Email must be valid"),
   body("password")
     .isLength({ min: 6, max: 50 })
     .withMessage("Password not valid"),

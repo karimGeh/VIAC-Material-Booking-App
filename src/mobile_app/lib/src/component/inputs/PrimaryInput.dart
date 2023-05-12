@@ -31,6 +31,7 @@ class PrimaryInput extends StatefulWidget {
 
 class _PrimaryInputState extends State<PrimaryInput> {
   bool _isPassword = false;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -51,11 +52,18 @@ class _PrimaryInputState extends State<PrimaryInput> {
         widget.validator!(value);
       },
       obscureText: _isPassword,
+      onTapOutside: (value) {
+        _focusNode.unfocus();
+      },
+      onTap: () {
+        _focusNode.requestFocus();
+      },
+      focusNode: _focusNode,
       decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         helperText: widget.helperText,
-        errorText: widget.errorText,
+        errorText: widget.errorText == "" ? null : widget.errorText,
         isDense: widget.isDense,
         suffixIcon: widget.isPassword != null
             ? IconButton(

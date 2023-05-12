@@ -4,6 +4,7 @@ export enum ModelsNames {
   Material = "Material",
   MaterialCategory = "MaterialCategory",
   Pin = "Pin",
+  Tag = "Tag",
 
   // Add new models here
 }
