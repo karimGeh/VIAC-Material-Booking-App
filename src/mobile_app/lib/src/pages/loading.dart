@@ -1,5 +1,7 @@
 // loading page class
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:mobile_app/src/router/routes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,8 +15,8 @@ class LoadingScreen extends StatelessWidget {
 
   // load for 2 seconds and navigate to auth screen
   Future<void> load(BuildContext context) async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    Navigator.pushNamed(context, Routes.auth_login);
+    await Future<void>.delayed(const Duration(seconds: 2));
+    Navigator.pushNamed(context, Routes.auth);
     Navigator.removeRoute(context, ModalRoute.of(context)!);
   }
 

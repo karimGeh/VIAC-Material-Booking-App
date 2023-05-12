@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/src/pages/auth/forgotPassword.dart';
 import 'package:mobile_app/src/pages/auth/index.dart';
 import 'package:mobile_app/src/pages/auth/login.dart';
+import 'package:mobile_app/src/pages/auth/logout.dart';
 import 'package:mobile_app/src/pages/auth/register.dart';
 import 'package:mobile_app/src/pages/auth/resetPassword.dart';
 import 'package:mobile_app/src/pages/auth/verifyResetPasswordPin.dart';
@@ -30,6 +31,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           builder: (_) => const VerifyResetPasswordPinScreen());
     case Routes.auth_resetPassword:
       return MaterialPageRoute(builder: (_) => const ResetPassword());
+    case Routes.auth_logout:
+      return MaterialPageRoute(builder: (_) => const LogoutScreen());
 
     //! common routes
     case Routes.common_requiredPermissions:

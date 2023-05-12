@@ -17,7 +17,7 @@ class PermissionRequiredScreen extends StatelessWidget {
 
   void _onLogout(BuildContext context) {
     // navigate to the given route
-    Navigator.pushNamed(context, Routes.auth_login);
+    Navigator.pushNamed(context, Routes.auth_logout);
   }
 
   @override

@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // login function
   Future<void> _login() async {
     // validate form
-    if (!isStateValid()) {
+    if (!isStateValid() || _isLoading) {
       return;
     }
     setState(() {
@@ -81,6 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
       email: state["email"],
       password: state["password"],
     ));
+
+    setState(() {
+      _isLoading = false;
+    });
 
     if (response.errors.isNotEmpty) {
       setState(() {
@@ -96,11 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
+    print(response.auth_token);
+    print(response.user);
+    // save token to local storage
+
     // navigate to home screen
     // Navigator.pushNamed(context, Routes.main_home);
-    setState(() {
-      _isLoading = false;
-    });
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.main_home, (route) => false);
   }
 
   void Function() navigateTo(String routeName) {
