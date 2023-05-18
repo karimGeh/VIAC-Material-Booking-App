@@ -9,13 +9,12 @@ export interface MaterialAttrs {
   ref: string;
   state: MaterialState;
   barcode: string;
-  // macAddress: string;
-
-  compatibleWith: MaterialCategoryDoc[] | ObjectId[];
-  compatibleWithMe: MaterialDoc[] | ObjectId[];
 }
 
 export interface MaterialDoc extends mongoose.Document, MaterialAttrs {
+  compatibleWith: MaterialCategoryDoc[] | ObjectId[];
+  compatibleWithMe: MaterialDoc[] | ObjectId[];
+  
   createdAt: Date;
   updatedAt: Date;
 
