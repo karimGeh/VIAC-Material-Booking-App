@@ -3,13 +3,13 @@
 class Routes {
   //! Auth
   static const String auth = '/auth';
-  static const String auth_login = '/auth/login';
-  static const String auth_register = '/auth/register';
-  static const String auth_forgotPassword = '/auth/forgotPassword';
+  static const String auth_login = '$auth/login';
+  static const String auth_register = '$auth/register';
+  static const String auth_forgotPassword = '$auth/forgotPassword';
   static const String auth_verifyResetPasswordPin =
-      '/auth/verifyResetPasswordPin';
-  static const String auth_resetPassword = '/auth/resetPassword';
-  static const String auth_logout = '/auth/logout';
+      '$auth/verifyResetPasswordPin';
+  static const String auth_resetPassword = '$auth/resetPassword';
+  static const String auth_logout = '$auth/logout';
 
   //! common
   static const String common_requiredPermissions =
@@ -17,7 +17,7 @@ class Routes {
 
   //! main
   static const String main_home = '/main/home';
-  static const String main_bookAMaterial = '/main/bookAMaterial';
+  static const String main_reserveAMaterial = '/main/bookAMaterial';
   static const String main_fuelCard = '/main/fuelCard';
   static const String main_plates = '/main/plates';
 
