@@ -10,43 +10,55 @@ class UserTypes {
 }
 
 class User {
-  String? id;
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? phoneNumber;
-  String? type;
-  String? createdAt;
-  String? updatedAt;
+  String id;
+  String code;
+  String fullName;
+  String email;
+  String phoneNum;
+  String type;
+  String createdAt;
+  String updatedAt;
 
   User({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phoneNumber,
-    this.type,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.code,
+    required this.fullName,
+    required this.email,
+    required this.phoneNum,
+    required this.type,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    firstName = json['firstName'];
-    lastName = json['lastName'];
-    email = json['email'];
-    phoneNumber = json['phoneNumber'];
-    type = json['type'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-  }
+  User.fromJson(Map<String, dynamic> json)
+      : this(
+          id: json['id'],
+          code: json['code'],
+          fullName: json['fullName'],
+          email: json['email'],
+          phoneNum: json['phoneNum'],
+          type: json['type'],
+          createdAt: json['createdAt'],
+          updatedAt: json['updatedAt'],
+        );
+
+  // {
+  //   id = json['id'];
+  //   code = json['code'];
+  //   fullName = json['fullName'];
+  //   email = json['email'];
+  //   phoneNum = json['phoneNum'];
+  //   type = json['type'];
+  //   createdAt = json['createdAt'];
+  //   updatedAt = json['updatedAt'];
+  // }
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'firstName': firstName,
-        'lastName': lastName,
+        'code': code,
+        'fullName': fullName,
         'email': email,
-        'phoneNumber': phoneNumber,
+        'phoneNum': phoneNum,
         'type': type,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
@@ -54,6 +66,6 @@ class User {
 
   @override
   String toString() {
-    return 'User{id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, type: $type, createdAt: $createdAt, updatedAt: $updatedAt}';
+    return 'User{id: $id, code: $code, fullName: $fullName, email: $email, phoneNum: $phoneNum, type: $type, createdAt: $createdAt, updatedAt: $updatedAt}';
   }
 }
