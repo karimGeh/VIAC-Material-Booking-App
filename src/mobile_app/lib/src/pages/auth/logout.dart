@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/router/routes.dart';
 import 'package:mobile_app/src/styles/colors.dart';
 
@@ -10,6 +11,7 @@ class LogoutScreen extends StatelessWidget {
   void logout(BuildContext context) async {
     // await AuthRequests.logout();
     await Future<void>.delayed(const Duration(seconds: 2));
+    await AuthProvider().onLogout();
     Navigator.pushNamedAndRemoveUntil(context, Routes.auth, (route) => false);
   }
 

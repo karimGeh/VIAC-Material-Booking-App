@@ -6,6 +6,7 @@ import 'package:mobile_app/src/api/users/AuthClientAPI.dart';
 import 'package:mobile_app/src/api/users/AuthRequests.dart';
 import 'package:mobile_app/src/component/buttons/PrimaryButtonFill.dart';
 import 'package:mobile_app/src/component/inputs/PrimaryInput.dart';
+import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/layouts/ScreenWithAppBar.dart';
 import 'package:mobile_app/src/router/routes.dart';
 import 'package:mobile_app/src/styles/colors.dart';
@@ -100,12 +101,23 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
+    AuthProvider authProvider = AuthProvider();
+    bool success = await authProvider.onLogin(response);
+
     print(response.auth_token);
     print(response.user);
     // save token to local storage
 
     // navigate to home screen
     // Navigator.pushNamed(context, Routes.main_home);
+    if (!success) {
+      setState(() {
+        errors['global'] =
+            'Something went wrong, please try to close the app and open it again!';
+      });
+      return;
+    }
+
     Navigator.pushNamedAndRemoveUntil(
         context, Routes.main_home, (route) => false);
   }

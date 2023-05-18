@@ -3,26 +3,43 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/router/routes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_app/src/styles/colors.dart';
 import 'package:mobile_app/src/styles/icons.dart';
 
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
 
-  static const String routeName = Routes.loading;
+  @override
+  _LoadingScreenState createState() => _LoadingScreenState();
+}
 
-  // load for 2 seconds and navigate to auth screen
+class _LoadingScreenState extends State<LoadingScreen> {
+  final String routeName = Routes.loading;
+
+  @override
+  void initState() {
+    super.initState();
+    load(context);
+  }
+
   Future<void> load(BuildContext context) async {
     await Future<void>.delayed(const Duration(seconds: 2));
-    Navigator.pushNamed(context, Routes.auth);
-    Navigator.removeRoute(context, ModalRoute.of(context)!);
+    bool isLoggedIn = await AuthProvider().isLoggedIn();
+
+    if (isLoggedIn) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, Routes.main_home, (route) => false);
+      return;
+    }
+
+    Navigator.pushNamedAndRemoveUntil(context, Routes.auth, (route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
-    load(context);
     return Scaffold(
       backgroundColor: CustomColors.dark1,
       body: Stack(
