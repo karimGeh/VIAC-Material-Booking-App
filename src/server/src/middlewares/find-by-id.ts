@@ -13,7 +13,7 @@ export const getMaterialById: RequestParamHandler = async (
   if (!isValidObjectId(id)) {
     throw new BadRequestError("Invalid id");
   }
-  const material = await Material.findById(id).populate("category");
+  const material = await Material.findById(id).populate("type");
   req.q_material = material;
   return material ? next() : next(new NotFoundError());
 };

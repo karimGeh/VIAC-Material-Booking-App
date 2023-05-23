@@ -3,7 +3,9 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/User";
 
 export interface UserPayload {
-  id: string;
+  _id: string;
+  type: string;
+  code: string;
 }
 
 export const currentUser = async (
@@ -19,10 +21,10 @@ export const currentUser = async (
   try {
     const payload = jwt.verify(
       req.headers.authorization.split(" ")[1],
-      process.env.AUTH_TOKEN!
+      process.env.JWT__AUTH_SECRET_KEY!
     ) as UserPayload;
 
-    req.q_authUser = await User.findById(payload.id);
+    req.q_authUser = await User.findById(payload._id);
   } catch (err) {
     req.q_authUser = null;
   }

@@ -56,15 +56,12 @@ export const ReservationSchema = new mongoose.Schema<ReservationDoc>(
     },
     returnedAt: {
       type: Date,
-      required: true,
     },
     cancelledAt: {
       type: Date,
-      required: true,
     },
     expiredAt: {
       type: Date,
-      required: true,
     },
   },
   {

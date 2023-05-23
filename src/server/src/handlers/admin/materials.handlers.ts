@@ -25,7 +25,10 @@ export const createMaterial: RequestHandler = async (req, res) => {
     state,
     barcode,
   });
+  material.compatibleWith = [type];
+
   await material.save();
+
   res.send({
     success: true,
     material,
@@ -51,5 +54,21 @@ export const deleteMaterial: RequestHandler = async (req, res) => {
   res.send({
     success: true,
     material,
+  });
+};
+
+export const makeMaterialCompatibleWithCategory: RequestHandler = async (
+  req,
+  res
+) => {
+  const material = req.q_material;
+  const category = req.q_materialCategory;
+
+  await Material.findByIdAndUpdate(material._id, {
+    $addToSet: { compatibleWith: category._id },
+  }).exec();
+
+  res.send({
+    success: true,
   });
 };

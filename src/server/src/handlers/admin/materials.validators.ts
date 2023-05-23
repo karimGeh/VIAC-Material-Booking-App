@@ -5,37 +5,41 @@ import { MaterialState } from "../../enums/MaterialState";
 export const createMaterialValidator = [
   body("type")
     .exists()
-    .withMessage("type is required")
+    .withMessage("Type is required")
     .custom(async (value) => {
-      const materialCategory = await MaterialCategory.findById(value);
-      if (!materialCategory) {
-        throw new Error("material type not valid");
+      try {
+        const materialCategory = await MaterialCategory.findById(value);
+        if (!materialCategory) {
+          throw new Error("Material type not valid");
+        }
+        return true;
+      } catch (error) {
+        throw new Error("Material type not valid");
       }
-      return true;
     }),
   body("ref")
     .exists()
-    .withMessage("ref is required")
+    .withMessage("Ref is required")
     .custom(async (value) => {
       const material = await Material.findOne({ ref: value });
       if (material) {
-        throw new Error("ref already exists");
+        throw new Error("Ref already exists");
       }
       return true;
     }),
   body("state")
     .exists()
-    .withMessage("state is required")
+    .withMessage("State is required")
     .custom(async (value) => {
       if (!Object.values(MaterialState).includes(value)) {
-        throw new Error("state not valid");
+        throw new Error("State not valid");
       }
       return true;
     }),
   body("barcode")
     .exists()
     .isString()
-    .withMessage("barcode is required")
+    .withMessage("Barcode is required")
     .custom(async (value) => {
       const material = await Material.findOne({ barcode: value });
       if (material) {

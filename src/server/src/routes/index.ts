@@ -3,15 +3,16 @@ import { NotFoundError } from "../errors/not-found-error";
 
 // routers
 import { userRouter } from "./user";
-import { bookingRouter } from "./booking";
+import { reservationsRouter } from "./reservations";
 import { materialRouter } from "./material";
 import { adminRouter } from "./admin";
+import { requireAuth } from "../middlewares/require-auth";
 
 const router = express.Router();
 
 //! API routes
 router.use("/user", userRouter);
-router.use("/booking", bookingRouter);
+router.use("/reservations", requireAuth, reservationsRouter);
 router.use("/material", materialRouter);
 router.use("/admin", adminRouter);
 

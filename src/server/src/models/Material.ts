@@ -13,8 +13,9 @@ export interface MaterialAttrs {
 
 export interface MaterialDoc extends mongoose.Document, MaterialAttrs {
   compatibleWith: MaterialCategoryDoc[] | ObjectId[];
-  compatibleWithMe: MaterialDoc[] | ObjectId[];
-  
+  // refCompatibleWithMe: MaterialDoc[] | ObjectId[] | string[];
+  // refIamCompatibleWith: MaterialDoc[] | ObjectId[] | string[];
+
   createdAt: Date;
   updatedAt: Date;
 
@@ -54,12 +55,18 @@ export const MaterialSchema = new mongoose.Schema<MaterialDoc>(
         ref: ModelsNames.MaterialCategory,
       },
     ],
-    compatibleWithMe: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: ModelsNames.Material,
-      },
-    ],
+    // refCompatibleWithMe: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: ModelsNames.Material,
+    //   },
+    // ],
+    // refIamCompatibleWith: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: ModelsNames.Material,
+    //   },
+    // ],
   },
   {
     timestamps: true,
@@ -85,13 +92,17 @@ MaterialSchema.methods.isAvailable = async function (
   endDate: Date
 ) {
   const material = this as MaterialDoc;
-  const reservations = await Reservation.find({
+
+  const reservation = await Reservation.findOne({
     material: material._id,
-    startDate: { $gte: startDate, $lte: endDate },
-    endDate: { $gte: startDate, $lte: endDate },
+    $or: [
+      { startDate: { $gte: startDate, $lte: endDate } },
+      { endDate: { $gte: startDate, $lte: endDate } },
+    ],
     status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
   });
-  return reservations.length === 0;
+  console.log({ material, reservation });
+  return !reservation;
 };
 
 export const Material = mongoose.model<MaterialDoc, MaterialModel>(

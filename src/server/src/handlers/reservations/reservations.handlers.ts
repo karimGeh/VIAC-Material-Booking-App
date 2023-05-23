@@ -1,34 +1,20 @@
 import { RequestHandler } from "express";
-import { Material, Reservation } from "../../models";
-import { NotFoundError } from "../../errors/not-found-error";
-import { BadRequestError } from "../../errors/bad-request-error";
+import { Reservation } from "../../models";
 import { ReservationStatus } from "../../enums/ReservationStatus";
 
 export const createReservation: RequestHandler = async (req, res) => {
-  const { materialId, userId, startDate, endDate } = req.body;
+  const { startDate, endDate } = req.body;
 
   // check if material exists
-  const material = await Material.findById(materialId);
-  if (!material) {
-    throw new NotFoundError("Material not found");
-  }
-
-  // check if material is available
-  const isAvailable = await material.isAvailable(
-    new Date(startDate),
-    new Date(endDate)
-  );
-  if (!isAvailable) {
-    throw new BadRequestError("Material is not available");
-  }
-  // check if user is allowed to book
+  const material = req.q_material;
+  const user = req.q_authUser;
 
   const reservation = Reservation.build({
-    material: materialId,
-    owner: userId,
+    material: material._id,
+    owner: user._id,
     startDate,
     endDate,
-    author: userId,
+    author: user._id,
     status: ReservationStatus.pending,
   });
 
@@ -54,7 +40,8 @@ export const getReservationsByUser: RequestHandler = async (req, res) => {
   const reservations = await Reservation.find({
     $or: [{ owner: authUser._id }, { author: authUser._id }],
     status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
-  }).populate(["material", "user", "owner"]);
+  }).populate(["material", "author", { path: "material", populate: "type" }]);
+
   res.send({
     success: true,
     reservations,
