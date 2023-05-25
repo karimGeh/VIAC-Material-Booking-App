@@ -1,0 +1,39 @@
+{
+  "_id": "646ca05de8723309beb12274",
+  "author": {
+    "_id": "645e094df5b8735ba25f836b",
+    "code": "SD97238",
+    "type": "normal",
+    "fullName": "KARIM SAADELDIN",
+    "email": "karim2jihad@gmail.com",
+    "phoneNum": "0681168414",
+    "createdAt": "2023-05-12T09:39:25.385Z",
+    "updatedAt": "2023-05-12T10:17:23.704Z",
+    "id": "645e094df5b8735ba25f836b"
+  },
+  "material": {
+    "_id": "64675c37822dd25b4de13486",
+    "type": {
+      "_id": "6467574e822dd25b4de1347a",
+      "name": " BE FMUX",
+      "createdAt": "2023-05-19T11:02:38.646Z",
+      "updatedAt": "2023-05-19T11:02:38.646Z",
+      "id": "6467574e822dd25b4de1347a"
+    },
+    "ref": "EE_M0136",
+    "state": "available",
+    "barcode": "EE_M0136",
+    "compatibleWith": ["6467574e822dd25b4de1347a"],
+    "compatibleWithMe": [],
+    "createdAt": "2023-05-19T11:23:35.078Z",
+    "updatedAt": "2023-05-19T14:09:03.791Z",
+    "id": "64675c37822dd25b4de13486"
+  },
+  "owner": "645e094df5b8735ba25f836b",
+  "status": "pending",
+  "startDate": "2023-05-24T11:00:00.000Z",
+  "endDate": "2023-05-30T11:00:00.000Z",
+  "createdAt": "2023-05-23T11:15:41.933Z",
+  "updatedAt": "2023-05-23T11:15:41.933Z",
+  "id": "646ca05de8723309beb12274"
+}

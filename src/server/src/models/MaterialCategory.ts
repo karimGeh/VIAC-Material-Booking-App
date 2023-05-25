@@ -23,7 +23,7 @@ export const MaterialCategorySchema = new mongoose.Schema<MaterialCategoryDoc>(
     toJSON: {
       transform(_, ret) {
         ret.id = ret._id;
-        delete ret._id;
+        // delete ret._id;
         delete ret.__v;
       },
     },

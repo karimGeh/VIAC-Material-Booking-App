@@ -40,7 +40,12 @@ export const getReservationsByUser: RequestHandler = async (req, res) => {
   const reservations = await Reservation.find({
     $or: [{ owner: authUser._id }, { author: authUser._id }],
     status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
-  }).populate(["material", "author", { path: "material", populate: "type" }]);
+  }).populate([
+    "material",
+    "author",
+    "owner",
+    { path: "material", populate: "type" },
+  ]);
 
   res.send({
     success: true,

@@ -53,7 +53,7 @@ class AuthProvider extends DbProvider {
 
     final List<Map<String, dynamic>> results = await db.query(
       'Users',
-      where: 'id = ?',
+      where: '_id = ?',
       whereArgs: [await getUserID()],
     );
 
@@ -70,7 +70,6 @@ class AuthProvider extends DbProvider {
     if (loginResponse.auth_token == null || loginResponse.user == null) {
       return false;
     }
-
     await db.insert(
       'KeyPairs',
       {

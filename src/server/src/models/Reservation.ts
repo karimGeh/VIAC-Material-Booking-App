@@ -69,7 +69,7 @@ export const ReservationSchema = new mongoose.Schema<ReservationDoc>(
     toJSON: {
       transform(_, ret) {
         ret.id = ret._id;
-        delete ret._id;
+        // delete ret._id;
         delete ret.__v;
       },
     },

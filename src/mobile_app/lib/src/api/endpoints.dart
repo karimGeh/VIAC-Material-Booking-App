@@ -18,9 +18,9 @@ class API_ENDPOINTS {
   static String updatePassword = "$settings/update-password";
 
   //! reservation
-  static String reservation = "$baseUrl/reservation";
-  static String getReservations = "$reservation/get-reservations";
-  static String getReservation = "$reservation/get-reservation";
-  static String createReservation = "$reservation/create-reservation";
-  static String updateReservation = "$reservation/update-reservation";
+  static String reservations = "$baseUrl/reservations";
+  static String getMyReservations = "$reservations/";
+  static String getReservation = "$reservations/get-reservation";
+  static String createReservation = "$reservations/create-reservation";
+  static String updateReservation = "$reservations/update-reservation";
 }

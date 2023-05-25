@@ -42,4 +42,32 @@ class APIGenerator {
     );
     return response;
   }
+
+  static Future<http.Response> AuthenticatedGetRequest(
+    String url,
+    String token,
+  ) async {
+    var uri = Uri.parse(url);
+    var response = await http.get(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+    );
+    return response;
+  }
+
+  static Future<http.Response> UnauthenticatedGetRequest(
+    String url,
+  ) async {
+    var uri = Uri.parse(url);
+    var response = await http.get(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+    return response;
+  }
 }

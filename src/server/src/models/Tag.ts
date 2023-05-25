@@ -33,7 +33,7 @@ export const TagSchema = new mongoose.Schema<TagDoc>(
     toJSON: {
       transform(_, ret) {
         ret.id = ret._id;
-        delete ret._id;
+        // delete ret._id;
         delete ret.__v;
       },
     },

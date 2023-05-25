@@ -58,7 +58,7 @@ export const userSchema = new mongoose.Schema<UserDoc>(
       transform(_, ret) {
         ret.id = ret._id;
         delete ret.password;
-        delete ret._id;
+        // delete ret._id;
         delete ret.__v;
       },
     },
