@@ -6,6 +6,7 @@ class Material {
   String ref;
   String state;
   String barcode;
+  List<String> compatibleWith;
 
   Material(
     this._id,
@@ -13,6 +14,7 @@ class Material {
     this.ref,
     this.state,
     this.barcode,
+    this.compatibleWith,
   );
   get id => _id;
 
@@ -23,6 +25,7 @@ class Material {
           json['ref'],
           json['state'],
           json['barcode'],
+          json['compatibleWith'].cast<String>(),
         );
 
   Map<String, dynamic> toJson() => {
@@ -37,4 +40,12 @@ class Material {
   String toString() {
     return 'Material{_id: $_id, type: $type, ref: $ref, state: $state}';
   }
+}
+
+class MaterialStates {
+  static const String available = "available";
+  static const String inUse = "inUse";
+  static const String broken = "broken";
+  static const String lost = "lost";
+  static const String disabled = "disabled";
 }

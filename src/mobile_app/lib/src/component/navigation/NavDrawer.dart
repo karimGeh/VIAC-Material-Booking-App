@@ -71,19 +71,62 @@ class _NavDrawerState extends State<NavDrawer> {
               icon: Icons.directions_car,
               navigateTo: navigateTo,
             ),
-            CustomListTile(
-              title: "Settings",
-              routeName: Routes.account_settings,
-              icon: Icons.settings,
-              navigateTo: navigateTo,
-            ),
             Expanded(child: Container()),
-            CustomListTile(
-                title: "Logout",
-                routeName: Routes.auth_logout,
-                icon: Icons.logout,
-                navigateTo: navigateTo,
-                titleStyle: CustomTextStyles.p()),
+            Flex(
+              direction: Axis.horizontal,
+              clipBehavior: Clip.hardEdge,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        CustomColors.dark1,
+                      ),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        CustomColors.dark2,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.account_settings);
+                    },
+                    // icon: Icon(Icons.settings),
+                    child: Flex(direction: Axis.horizontal, children: [
+                      Icon(
+                        Icons.settings,
+                        color: CustomColors.black.withOpacity(0.5),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        "Settings",
+                        style: CustomTextStyles.p(
+                          color: CustomColors.black.withOpacity(0.5),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.auth_logout);
+                  },
+                  icon: Icon(Icons.logout),
+                  padding: EdgeInsets.only(
+                    left: 32,
+                    right: 24,
+                  ),
+                  color: CustomColors.black.withOpacity(0.5),
+                  // title: "Logout",
+                  // title: "",
+                  // routeName: Routes.auth_logout,
+                  // icon: Icons.logout,
+                  // navigateTo: navigateTo,
+                  // titleStyle: CustomTextStyles.p(),
+                ),
+              ],
+            )
           ],
         ),
       ),

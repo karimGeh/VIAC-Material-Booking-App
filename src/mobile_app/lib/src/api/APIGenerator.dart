@@ -43,6 +43,24 @@ class APIGenerator {
     return response;
   }
 
+  static Future<http.Response>
+      AuthenticatedPostRequest<R extends DefaultRequest>(
+    String url,
+    String token,
+    R body,
+  ) async {
+    var uri = Uri.parse(url);
+    var response = await http.post(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+      body: body.toJson(),
+    );
+    return response;
+  }
+
   static Future<http.Response> AuthenticatedGetRequest(
     String url,
     String token,

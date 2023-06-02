@@ -21,6 +21,12 @@ class API_ENDPOINTS {
   static String reservations = "$baseUrl/reservations";
   static String getMyReservations = "$reservations/";
   static String getReservation = "$reservations/get-reservation";
-  static String createReservation = "$reservations/create-reservation";
+  static String Function(String) createReservation =
+      (String id) => "$reservations/create-reservation/$id";
   static String updateReservation = "$reservations/update-reservation";
+
+  //! materials
+  static String materials = "$baseUrl/materials";
+  static String getMaterials = "$materials/";
+  static String Function(String) getMaterial = (String id) => "$materials/$id";
 }

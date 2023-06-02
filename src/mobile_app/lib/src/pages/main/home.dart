@@ -8,6 +8,7 @@ import 'package:mobile_app/src/api/reservations/ReservationResponses.dart';
 import 'package:mobile_app/src/component/navigation/NavDrawer.dart';
 import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/router/routes.dart';
+import 'package:mobile_app/src/styles/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -90,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: NavDrawer(),
       appBar: AppBar(
         title: Text('Home'),
+        backgroundColor: CustomColors.blue1,
       ),
       body: RefreshIndicator(
         onRefresh: onRefresh,
@@ -129,7 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       return Card(
                         child: ListTile(
-                          title: Text(reservation.material.type.name),
+                          title: Text(
+                            reservation.material.type.name +
+                                ' ' +
+                                reservation.material.ref,
+                          ),
                           subtitle: Text(reservation.startDate.toString() +
                               ' - ' +
                               reservation.endDate.toString()),
@@ -153,7 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       return Card(
                         child: ListTile(
-                          title: Text(reservation.material.type.name),
+                          title: Text(
+                            reservation.material.type.name +
+                                ' ' +
+                                reservation.material.ref,
+                          ),
                           subtitle: Text(reservation.startDate.toString() +
                               ' - ' +
                               reservation.endDate.toString()),

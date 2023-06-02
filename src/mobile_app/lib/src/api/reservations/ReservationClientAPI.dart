@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:mobile_app/src/api/APIGenerator.dart';
 import 'package:mobile_app/src/api/endpoints.dart';
+import 'package:mobile_app/src/api/reservations/ReservationRequests.dart';
 import 'package:mobile_app/src/api/reservations/ReservationResponses.dart';
 
 class ReservationClientAPI {
@@ -12,5 +13,19 @@ class ReservationClientAPI {
       token,
     );
     return GetMyReservationsResponse.fromHttp(response);
+  }
+
+  static Future<CreateReservationResponse> createReservation(
+    String token,
+    String materialId,
+    CreateReservationRequest request,
+  ) async {
+    final response =
+        await APIGenerator.AuthenticatedPostRequest<CreateReservationRequest>(
+      API_ENDPOINTS.createReservation(materialId),
+      token,
+      request,
+    );
+    return CreateReservationResponse.fromHttp(response);
   }
 }

@@ -22,3 +22,22 @@ class GetMyReservationsResponse extends DefaultResponse {
     return 'GetMyReservationsResponse{success: $success, reservations: $reservations}';
   }
 }
+
+class CreateReservationResponse extends DefaultResponse {
+  bool? success;
+  Reservation? reservation;
+
+  CreateReservationResponse.fromHttp(http.Response response)
+      : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    reservation = Reservation.fromJson(json['reservation']);
+  }
+
+  @override
+  String toString() {
+    return 'CreateReservationResponse{success: $success, reservation: $reservation}';
+  }
+}
