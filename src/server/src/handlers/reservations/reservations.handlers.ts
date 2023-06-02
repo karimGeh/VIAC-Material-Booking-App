@@ -10,7 +10,7 @@ export const createReservation: RequestHandler = async (req, res) => {
   const user = req.q_authUser;
 
   const reservation = Reservation.build({
-    material: material._id,
+    material: material,
     owner: user._id,
     startDate,
     endDate,

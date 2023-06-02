@@ -13,7 +13,7 @@ const router = express.Router();
 //! API routes
 router.use("/user", userRouter);
 router.use("/reservations", requireAuth, reservationsRouter);
-router.use("/material", materialRouter);
+router.use("/materials", materialRouter);
 router.use("/admin", adminRouter);
 
 // status
