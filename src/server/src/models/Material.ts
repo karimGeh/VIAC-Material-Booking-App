@@ -98,10 +98,16 @@ MaterialSchema.methods.isAvailable = async function (
     $or: [
       { startDate: { $gte: startDate, $lte: endDate } },
       { endDate: { $gte: startDate, $lte: endDate } },
+      {
+        $and: [
+          { startDate: { $lte: startDate } },
+          { endDate: { $gte: endDate } },
+        ],
+      },
     ],
     status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
   });
-  console.log({ material, reservation });
+
   return !reservation;
 };
 

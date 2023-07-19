@@ -74,3 +74,21 @@ export const returnMaterial: RequestHandler = async (req, res) => {
     reservation,
   });
 };
+
+export const getReservationsByMaterial: RequestHandler = async (req, res) => {
+  const material = req.q_material;
+  const reservations = await Reservation.find({
+    material: material._id,
+    status: { $in: [ReservationStatus.pending, ReservationStatus.active] },
+  }).populate([
+    "material",
+    "author",
+    "owner",
+    { path: "material", populate: "type" },
+  ]);
+
+  res.send({
+    success: true,
+    reservations,
+  });
+};

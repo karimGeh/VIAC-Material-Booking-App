@@ -18,9 +18,9 @@ export const createReservationValidator = [
       throw new Error("End date must be provided");
     }
 
-    // check if both are in the future
-    if (endDate - Date.now() < 0 || startDate - Date.now() < 0) {
-      throw new Error("Start date and end date must be in the future");
+    // only endDate must be in the future by at least 30 minutes
+    if (endDate - Date.now() < 30 * 60 * 1000) {
+      throw new Error("End date must be in the future");
     }
 
     // check if both are in the future but not more than 1 month
@@ -41,6 +41,21 @@ export const createReservationValidator = [
     // maximum reservation time is 1 week
     if (endDate - startDate > 7 * 24 * 60 * 60 * 1000) {
       throw new Error("Cannot book more than 1 week at a time");
+    }
+
+    // make sure startDate and endDate are in work hours (work hours are between 6 am and 10 pm gmt)
+    if (
+      new Date(startDate).getUTCHours() < 6 ||
+      new Date(startDate).getUTCHours() > 22
+    ) {
+      throw new Error("Start date must be between 6 am and 10 pm GMT");
+    }
+
+    if (
+      new Date(endDate).getUTCHours() < 6 ||
+      new Date(endDate).getUTCHours() > 22
+    ) {
+      throw new Error("End date must be between 6 am and 10 pm GMT");
     }
 
     // check if user has already booked this material in the allowed time period (1 month from now)

@@ -6,6 +6,7 @@ import {
 } from "../../middlewares/find-by-id";
 import {
   createReservation,
+  getReservationsByMaterial,
   getReservationsByUser,
 } from "../../handlers/reservations/reservations.handlers";
 import { createReservationValidator } from "../../handlers/reservations/reservations.validators";
@@ -19,7 +20,7 @@ router.param("materialId", getMaterialById);
 
 router.get("/", getReservationsByUser);
 router.get("/reservation-by-id/:reservationId");
-router.get("/reservation-by-material-id/:materialId");
+router.get("/materials/:materialId", getReservationsByMaterial);
 
 router.post(
   "/create-reservation/:materialId",
