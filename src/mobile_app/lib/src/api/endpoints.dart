@@ -1,5 +1,5 @@
 class API_ENDPOINTS {
-  static String baseUrl = "http://10.222.152.158:5000/api/v1";
+  static String baseUrl = "http://10.222.154.40:5000/api/v1";
 
   //! - User
   static String user = "$baseUrl/user";
@@ -23,6 +23,8 @@ class API_ENDPOINTS {
   static String getReservation = "$reservations/get-reservation";
   static String Function(String) createReservation =
       (String id) => "$reservations/create-reservation/$id";
+  static String Function(String) getReservationsByMaterialId =
+      (String id) => "$reservations/materials/$id";
   static String updateReservation = "$reservations/update-reservation";
 
   //! materials

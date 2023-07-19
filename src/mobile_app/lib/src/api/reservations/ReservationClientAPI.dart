@@ -28,4 +28,16 @@ class ReservationClientAPI {
     );
     return CreateReservationResponse.fromHttp(response);
   }
+
+  static Future<GetReservationsByMaterialIdResponse>
+      getReservationsByMaterialId(
+    String token,
+    String materialId,
+  ) async {
+    final response = await APIGenerator.AuthenticatedGetRequest(
+      API_ENDPOINTS.getReservationsByMaterialId(materialId),
+      token,
+    );
+    return GetReservationsByMaterialIdResponse.fromHttp(response);
+  }
 }

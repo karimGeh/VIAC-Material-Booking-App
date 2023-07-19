@@ -41,3 +41,24 @@ class CreateReservationResponse extends DefaultResponse {
     return 'CreateReservationResponse{success: $success, reservation: $reservation}';
   }
 }
+
+class GetReservationsByMaterialIdResponse extends DefaultResponse {
+  bool? success;
+  List<Reservation>? reservations;
+
+  GetReservationsByMaterialIdResponse.fromHttp(http.Response response)
+      : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    reservations = json['reservations'].map<Reservation>((reservation) {
+      return Reservation.fromJson(reservation);
+    }).toList();
+  }
+
+  @override
+  String toString() {
+    return 'GetReservationsByMaterialIdResponse{success: $success, reservations: $reservations}';
+  }
+}

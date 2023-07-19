@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'package:mobile_app/src/api/APIGenerator.dart';
 
 class CreateReservationRequest extends DefaultRequest {
-  int? startDate;
-  int? endDate;
+  DateTime startDate;
+  DateTime endDate;
   CreateReservationRequest({
-    this.startDate,
-    this.endDate,
+    required this.startDate,
+    required this.endDate,
   });
 
   @override
   String toJson() {
     return jsonEncode({
-      "startDate": startDate,
-      "endDate": endDate,
+      "startDate": startDate.millisecondsSinceEpoch,
+      "endDate": endDate.millisecondsSinceEpoch,
     });
   }
 }
