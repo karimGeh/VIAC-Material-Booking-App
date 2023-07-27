@@ -53,4 +53,30 @@ class CustomTextStyles {
       color: color,
     );
   }
+
+  static cardTitle({
+    Color? color = CustomColors.black,
+    FontWeight? fontWeight = FontWeight.bold,
+    TextAlign? textAlign = TextAlign.left,
+  }) {
+    return TextStyle(
+      // 14 bold inter
+      fontSize: 14.0,
+      fontWeight: fontWeight,
+      color: color,
+    );
+  }
+
+  static error({
+    Color? color = CustomColors.white,
+    FontWeight? fontWeight = FontWeight.bold,
+    TextAlign? textAlign = TextAlign.left,
+  }) {
+    return TextStyle(
+      // 14 bold inter
+      fontSize: 14.0,
+      fontWeight: fontWeight,
+      color: color,
+    );
+  }
 }

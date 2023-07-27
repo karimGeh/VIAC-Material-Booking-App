@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:mobile_app/src/api/models/Reservation.dart';
@@ -9,7 +7,6 @@ import 'package:mobile_app/src/api/reservations/ReservationResponses.dart';
 import 'package:mobile_app/src/component/buttons/PrimaryButtonFill.dart';
 import 'package:mobile_app/src/component/buttons/PrimaryButtonOutline.dart';
 import 'package:mobile_app/src/component/navigation/BookPopupHeader.dart';
-import 'package:mobile_app/src/component/navigation/BookPopupNavigation.dart';
 import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/styles/colors.dart';
 import 'package:mobile_app/src/api/models/Material.dart' as MaterialModel;
@@ -90,14 +87,15 @@ class _ReserveAMaterialPopupState extends State<ReserveAMaterialPopup> {
   int getHowManyHoursNotReservedInADay(DateTime date) {
     // 8:00 to 19:00 GMT
     DateTime startDate = DateTime(date.year, date.month, date.day, 6, 0, 0);
-    DateTime endDate = DateTime(date.year, date.month, date.day, 20, 0, 0);
+    DateTime endDate = DateTime(date.year, date.month, date.day, 22, 0, 0);
 
     // we will keep removing the intersection between the reservation and
     // the work hours interval defined above until we left with the hours
     // that are not reserved
     for (Reservation reservation in reservations) {
       DateTime reservationStartDate = reservation.startDate;
-      DateTime reservationEndDate = reservation.endDate;
+      DateTime reservationEndDate =
+          reservation.returnedAt ?? reservation.endDate;
 
       if (startDate.isAfter(reservationStartDate) &&
           startDate.isBefore(reservationEndDate)) {

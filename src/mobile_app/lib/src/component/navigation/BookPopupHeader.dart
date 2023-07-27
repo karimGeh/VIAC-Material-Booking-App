@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:mobile_app/src/api/models/Material.dart' as MaterialModel;
 import 'package:mobile_app/src/styles/colors.dart';
 
 class BookPopupHeader extends StatefulWidget {
-  MaterialModel.Material material;
+  final MaterialModel.Material material;
 
   BookPopupHeader(this.material);
 

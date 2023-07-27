@@ -62,3 +62,60 @@ class GetReservationsByMaterialIdResponse extends DefaultResponse {
     return 'GetReservationsByMaterialIdResponse{success: $success, reservations: $reservations}';
   }
 }
+
+class PickupMaterialResponse extends DefaultResponse {
+  bool? success;
+  Reservation? reservation;
+
+  PickupMaterialResponse.fromHttp(http.Response response)
+      : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    reservation = Reservation.fromJson(json['reservation']);
+  }
+
+  @override
+  String toString() {
+    return 'PickupReservationResponse{success: $success, reservation: $reservation}';
+  }
+}
+
+class CancelReservationResponse extends DefaultResponse {
+  bool? success;
+  Reservation? reservation;
+
+  CancelReservationResponse.fromHttp(http.Response response)
+      : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    reservation = Reservation.fromJson(json['reservation']);
+  }
+
+  @override
+  String toString() {
+    return 'CancelReservationResponse{success: $success, reservation: $reservation}';
+  }
+}
+
+class ReturnMaterialResponse extends DefaultResponse {
+  bool? success;
+  Reservation? reservation;
+
+  ReturnMaterialResponse.fromHttp(http.Response response)
+      : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    reservation = Reservation.fromJson(json['reservation']);
+  }
+
+  @override
+  String toString() {
+    return 'ReturnReservationResponse{success: $success, reservation: $reservation}';
+  }
+}

@@ -43,7 +43,6 @@ class _PrimaryMaterialCardState extends State<PrimaryMaterialCard> {
           // ),
         ),
         onPressed: () {
-          print('Open reserve a material popup for ${widget.material.ref}');
           Navigator.push(
             context,
             PageRouteBuilder(

@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:mobile_app/src/api/APIGenerator.dart';
 import 'package:mobile_app/src/api/endpoints.dart';
 import 'package:mobile_app/src/api/reservations/ReservationRequests.dart';
@@ -39,5 +38,41 @@ class ReservationClientAPI {
       token,
     );
     return GetReservationsByMaterialIdResponse.fromHttp(response);
+  }
+
+  static Future<PickupMaterialResponse> pickupMaterial(
+    String token,
+    String reservationId,
+  ) async {
+    final response = await APIGenerator.AuthenticatedPostRequest(
+      API_ENDPOINTS.pickupMaterial(reservationId),
+      token,
+      DefaultRequest(),
+    );
+    return PickupMaterialResponse.fromHttp(response);
+  }
+
+  static Future<CancelReservationResponse> cancelReservation(
+    String token,
+    String reservationId,
+  ) async {
+    final response = await APIGenerator.AuthenticatedPostRequest(
+      API_ENDPOINTS.cancelReservation(reservationId),
+      token,
+      DefaultRequest(),
+    );
+    return CancelReservationResponse.fromHttp(response);
+  }
+
+  static Future<ReturnMaterialResponse> returnMaterial(
+    String token,
+    String reservationId,
+  ) async {
+    final response = await APIGenerator.AuthenticatedPostRequest(
+      API_ENDPOINTS.returnMaterial(reservationId),
+      token,
+      DefaultRequest(),
+    );
+    return ReturnMaterialResponse.fromHttp(response);
   }
 }

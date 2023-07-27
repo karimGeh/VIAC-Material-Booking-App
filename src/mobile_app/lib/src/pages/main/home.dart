@@ -5,6 +5,7 @@ import 'package:mobile_app/src/api/models/Reservation.dart';
 import 'package:mobile_app/src/api/models/User.dart';
 import 'package:mobile_app/src/api/reservations/ReservationClientAPI.dart';
 import 'package:mobile_app/src/api/reservations/ReservationResponses.dart';
+import 'package:mobile_app/src/component/cards/HomeReservationCard.dart';
 import 'package:mobile_app/src/component/navigation/NavDrawer.dart';
 import 'package:mobile_app/src/db/auth.provider.dart';
 import 'package:mobile_app/src/router/routes.dart';
@@ -129,18 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Container();
                       }
 
-                      return Card(
-                        child: ListTile(
-                          title: Text(
-                            reservation.material.type.name +
-                                ' ' +
-                                reservation.material.ref,
-                          ),
-                          subtitle: Text(reservation.startDate.toString() +
-                              ' - ' +
-                              reservation.endDate.toString()),
-                          trailing: Text(reservation.status),
-                        ),
+                      return HomeReservationCard(
+                        reservation: reservation,
                       );
                     },
                   ),
@@ -157,18 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Container();
                       }
 
-                      return Card(
-                        child: ListTile(
-                          title: Text(
-                            reservation.material.type.name +
-                                ' ' +
-                                reservation.material.ref,
-                          ),
-                          subtitle: Text(reservation.startDate.toString() +
-                              ' - ' +
-                              reservation.endDate.toString()),
-                          trailing: Text(reservation.status),
-                        ),
+                      return HomeReservationCard(
+                        reservation: reservation,
                       );
                     },
                   ),

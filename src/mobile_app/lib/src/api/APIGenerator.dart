@@ -25,7 +25,8 @@ class DefaultResponse {
 
 class DefaultRequest {
   String toJson() {
-    throw UnimplementedError(); // provide an implementation in a subclass
+    // throw UnimplementedError(); // provide an implementation in a subclass
+    return "";
   }
 }
 
