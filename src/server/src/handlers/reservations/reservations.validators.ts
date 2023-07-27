@@ -45,14 +45,14 @@ export const createReservationValidator = [
 
     // make sure startDate and endDate are in work hours (work hours are between 6 am and 10 pm gmt)
     if (
-      new Date(startDate).getUTCHours() < 6 ||
+      new Date(startDate).getUTCHours() < 5 ||
       new Date(startDate).getUTCHours() > 22
     ) {
       throw new Error("Start date must be between 6 am and 10 pm GMT");
     }
 
     if (
-      new Date(endDate).getUTCHours() < 6 ||
+      new Date(endDate).getUTCHours() < 5 ||
       new Date(endDate).getUTCHours() > 22
     ) {
       throw new Error("End date must be between 6 am and 10 pm GMT");

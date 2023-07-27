@@ -5,9 +5,12 @@ import {
   getUserById,
 } from "../../middlewares/find-by-id";
 import {
+  cancelReservation,
   createReservation,
   getReservationsByMaterial,
   getReservationsByUser,
+  pickupMaterial,
+  returnMaterial,
 } from "../../handlers/reservations/reservations.handlers";
 import { createReservationValidator } from "../../handlers/reservations/reservations.validators";
 import { validateRequest } from "../../middlewares/validate-request";
@@ -28,7 +31,9 @@ router.post(
   validateRequest,
   createReservation
 );
-router.post("/cancel-reservation");
-router.post("/update-reservation");
+router.post("/pickup-material/:reservationId", pickupMaterial);
+router.post("/return-material/:reservationId", returnMaterial);
+router.post("/cancel-reservation/:reservationId", cancelReservation);
+router.post("/update-reservation/:reservationId");
 
 export { router as reservationsRouter };

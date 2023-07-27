@@ -1,6 +1,12 @@
 import { RequestParamHandler } from "express";
 import { NotFoundError } from "../errors/not-found-error";
-import { Material, MaterialCategory, Reservation, User } from "../models";
+import {
+  Material,
+  MaterialCategory,
+  MaterialDoc,
+  Reservation,
+  User,
+} from "../models";
 import { isValidObjectId } from "mongoose";
 import { BadRequestError } from "../errors/bad-request-error";
 
@@ -43,11 +49,17 @@ export const getReservationById: RequestParamHandler = async (
     throw new BadRequestError("Invalid id");
   }
   const reservation = await Reservation.findById(id).populate([
-    "material",
-    "user",
+    "author",
     "owner",
+    {
+      path: "material",
+      populate: {
+        path: "type",
+      },
+    },
   ]);
   req.q_reservation = reservation;
+  req.q_material = reservation.material as MaterialDoc;
   return reservation ? next() : next(new NotFoundError());
 };
 
