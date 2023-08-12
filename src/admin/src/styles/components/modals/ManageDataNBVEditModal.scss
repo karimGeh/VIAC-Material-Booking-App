@@ -1,0 +1,101 @@
+.manageDataNBVEditModalRoot {
+  .manageDataNBVEditModalWrapper {
+    .manageDataNBVEditModal {
+      margin: 2rem auto !important;
+      width: 80vw !important;
+      max-width: 1000px !important;
+      .ant-modal-content {
+        overflow: hidden;
+        padding: 0;
+        .ant-modal-header {
+          margin: 0;
+          .manageDataNBVEditModalTitle {
+            // background-color: var(--cyan);
+            border-top: 0.5rem solid var(--cyan);
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: var(--font-size-5);
+            color: var(--cyan);
+          }
+        }
+        .manageDataNBVEditModalContentWrapper {
+          padding: 0 2rem 2rem;
+          .manageDataNBVEditModalContentHeader {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+            background-color: var(--cyan);
+            border-radius: var(--border-radius-2);
+            color: var(--white);
+            .fieldLabel {
+              font-weight: var(--font-weight-4);
+              font-size: var(--font-size-2);
+            }
+            .fieldValue {
+              margin-left: 0.5rem;
+              font-weight: var(--font-weight-2);
+              font-size: var(--font-size-2);
+            }
+          }
+          //   .manageDataNBVEditModalContentFieldsWrapper{}
+          .manageDataNBVEditModalContent {
+            padding: 2rem 0 0;
+            .ant-form-item {
+              margin-bottom: 0;
+            }
+            .manageDataNBVEditModalContentRow {
+              display: flex;
+              justify-content: center;
+              .manageDataEditModalContentFormCol {
+                padding: 1rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+                border-radius: var(--border-radius-2);
+                border: 1px solid var(--secondary);
+                &:not(&:last-child) {
+                  margin-right: 1rem;
+                }
+                .ant-form-item:not(:last-child) {
+                  padding-bottom: 1rem;
+                }
+              }
+            }
+          }
+        }
+
+        .actionButtons {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 4rem;
+          .ant-btn {
+            margin-left: 1rem;
+          }
+          .button {
+            height: 40px;
+            min-width: 150px;
+            font-weight: var(--font-weight-4);
+            font-size: var(--font-size-3);
+            border: 1px solid var(--green);
+            color: var(--green);
+          }
+          .submitButton {
+            margin-left: 1rem;
+            border: 0;
+            background-color: var(--green);
+            color: var(--white);
+            &:hover {
+              background-color: var(--green-hover);
+              color: var(--white);
+            }
+            //   min-width: 100px;
+          }
+        }
+      }
+    }
+  }
+}

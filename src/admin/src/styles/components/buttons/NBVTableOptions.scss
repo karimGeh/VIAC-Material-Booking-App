@@ -1,0 +1,73 @@
+.buttonWrapper {
+  //   min-width: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid red;
+}
+.tableOptionsButton {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-100);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--gray-200);
+  }
+
+  svg {
+    width: 17px;
+    height: 17px;
+    // fill: var(--green);
+  }
+}
+
+.tableOptionsPopoverOverlay {
+  // transform: translate(-7px, 0) !important;
+  .ant-popover-inner {
+    padding: 0.2rem;
+    // border: 1px solid red;
+  }
+}
+
+.popoverContentWrapper {
+  width: 180px;
+  // padding: 0 !important;
+  .popoverBtn {
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+    display: flex;
+    // justify-content: flex-start;
+    align-items: center;
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-3);
+    .iconWrapper {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0.5rem;
+      svg {
+        // width: 20px;
+        // height: 20px;
+      }
+    }
+    .nextIconWrapper {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}

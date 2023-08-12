@@ -1,0 +1,21 @@
+.stateMainNavigationBarTabs {
+  width: 100%;
+  padding: 1rem 2rem 0;
+  font-weight: var(--font-weight-3);
+  div[role="tablist"] {
+    margin: 0 !important;
+  }
+  .ant-tabs-tab div[role="tab"] {
+    color: var(--gray-700) !important;
+    font-size: var(--font-size-3) !important;
+  }
+  .ant-tabs-tab-active div[role="tab"] {
+    color: var(--primary) !important;
+  }
+  .ant-tabs-ink-bar {
+    background-color: var(--primary) !important;
+  }
+  .ant-tabs-tab div[role="tab"]:hover {
+    color: var(--primary) !important;
+  }
+}

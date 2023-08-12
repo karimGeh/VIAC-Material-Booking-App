@@ -1,0 +1,22 @@
+.authenticationLayoutWrapper {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  .formWrapper {
+    background: var(--white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    width: 100%;
+    max-width: 400px;
+
+    padding: var(--spacer-4) var(--spacer-8);
+
+    border-radius: var(--border-radius-2);
+  }
+}

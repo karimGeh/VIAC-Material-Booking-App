@@ -1,0 +1,67 @@
+.manageReportsAddNewModalRoot {
+  .manageReportsAddNewModalWrapper {
+    .manageReportsAddNewModal {
+      .ant-modal-content {
+        overflow: hidden;
+        padding: 0;
+        .ant-modal-header {
+          margin: 0;
+          .manageReportsAddNewModalTitle {
+            // background-color: var(--cyan);
+            border-top: 0.5rem solid var(--cyan);
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--font-size-5);
+            color: var(--cyan);
+          }
+        }
+        .manageReportsAddNewModalContent {
+          // border: 1px solid red;
+          padding: 2rem 4rem;
+          .ant-form-item {
+            margin-bottom: 0.8rem;
+            // height: 48px;
+            label {
+              // width: 50px;
+              // break the word if not enough width
+              text-align: left !important;
+              width: 100%;
+              word-break: break-all;
+            }
+            .ant-row {
+              gap: 1rem;
+            }
+          }
+          .actionButtons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            .button {
+              flex: 1;
+              height: 48px;
+              font-weight: var(--font-weight-4);
+              font-size: var(--font-size-3);
+              border: 1px solid var(--green);
+              color: var(--green);
+            }
+            .submitButton {
+              margin-left: 1rem;
+              border: 0;
+              background-color: var(--green);
+              color: var(--white);
+              &:hover {
+                background-color: var(--green-hover);
+                color: var(--white);
+              }
+              //   min-width: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

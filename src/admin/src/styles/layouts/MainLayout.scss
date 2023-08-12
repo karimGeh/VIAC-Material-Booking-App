@@ -1,0 +1,25 @@
+.mainLayout {
+  min-height: 100vh;
+  overflow: hidden;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .contentLayout {
+    // height: 100%;
+    // overflow: auto;
+    overflow-y: auto;
+    background-color: var(--main-layout-background-color) !important;
+    z-index: 0;
+
+    .mainLayoutContent {
+      margin-block: var(--spacer-10);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+      background-color: var(--white);
+      border-radius: var(--border-radius-2);
+    }
+  }
+}

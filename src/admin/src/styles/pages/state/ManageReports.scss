@@ -1,0 +1,87 @@
+.manageReportsOptionsComment {
+  // width: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // position: relative;
+
+  // // .commentPopup {
+  // //   display: none;
+  // //   position: absolute;
+  // //   top: 0;
+  // //   right: 100%;
+  // //   width: 200px;
+  // //   background-color: var(--white);
+  // //   border-radius: var(--border-radius-1);
+  // //   padding: 0.5rem;
+  // //   box-shadow: var(--box-shadow-1);
+  // //   z-index: 1;
+  // // }
+  // // &:hover .commentPopup {
+  // //   display: block;
+  // // }
+}
+.manageReportsWrapper {
+  .mainTable {
+    .tableRowOdd {
+      background-color: var();
+    }
+    .tableRoot {
+      padding-inline: 1rem;
+      table {
+        .tableHeaderCustom th {
+          background-color: var(--cyan);
+          .ant-table-selection {
+            // border: 1px solid red !important;
+            .ant-checkbox-wrapper {
+              // border: 1px solid red !important;
+              .ant-checkbox-inner {
+                border: 1px solid var(--black) !important;
+              }
+            }
+          }
+        }
+        // thead {
+        //   * {
+        //     background-color: var(--cyan);
+        //     font-size: var(--font-size-1);
+        //     text-transform: uppercase;
+        //     font-weight: var(--font-weight-3);
+        //   }
+        // }
+        .dateWrapper {
+          width: 100%;
+        }
+        .iconWrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          .excelIconManageReports {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+    }
+
+    .ant-pagination {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      //   border: 1px solid red;
+      //   justify-content: space-between;
+      li:first-child {
+        // flex: 1;
+        flex-grow: 1 !important;
+      }
+      li:last-child {
+        flex-grow: 1 !important;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

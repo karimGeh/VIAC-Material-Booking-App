@@ -1,0 +1,78 @@
+.manageDataNBVAddNewModalRoot {
+  .manageDataNBVAddNewModalWrapper {
+    .manageDataNBVAddNewModal {
+      margin: 2rem auto !important;
+      width: 80vw !important;
+      max-width: 1000px !important;
+      .ant-modal-content {
+        overflow: hidden;
+        padding: 0;
+        .ant-modal-header {
+          margin: 0;
+          .manageDataNBVAddNewModalTitle {
+            // background-color: var(--cyan);
+            border-top: 0.5rem solid var(--cyan);
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: var(--font-size-5);
+            color: var(--cyan);
+          }
+        }
+        .manageDataNBVAddNewModalContent {
+          padding: 0 2rem 2rem;
+          .ant-form-item {
+            margin-bottom: 0;
+          }
+          .manageDataNBVAddNewModalContentRow {
+            display: flex;
+            justify-content: center;
+            .manageDataAddNewModalContentFormCol {
+              padding: 1rem;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+              border-radius: var(--border-radius-2);
+              border: 1px solid var(--secondary);
+              &:not(&:last-child) {
+                margin-right: 1rem;
+              }
+
+              .ant-form-item:not(:last-child) {
+                padding-bottom: 1rem;
+              }
+            }
+          }
+        }
+
+        .actionButtons {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 2rem;
+          .ant-btn {
+            margin-left: 1rem;
+          }
+          .button {
+            height: 40px;
+            min-width: 150px;
+            font-weight: var(--font-weight-4);
+            font-size: var(--font-size-3);
+            border: 1px solid var(--green);
+            color: var(--green);
+          }
+          .submitButton {
+            margin-left: 1rem;
+            border: 0;
+            background-color: var(--green);
+            color: var(--white);
+            &:hover {
+              background-color: var(--green-hover);
+              color: var(--white);
+            }
+            //   min-width: 100px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+.exportPopupWrapper {
+  position: fixed;
+  bottom: 5rem;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  background-color: var(--primary);
+  border-radius: var(--border-radius-2);
+
+  //   padding: var(--spacer-2);
+
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  .exportPopupContent {
+    flex: 1;
+    height: 5rem;
+    width: 400px;
+    padding: var(--spacer-5);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .leftSide {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      font-size: var(--font-size-2);
+      .closeIcon {
+        margin-right: var(--spacer-3);
+        cursor: pointer;
+      }
+
+      .numberOfExportedItems {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: var(--white);
+        border-radius: var(--border-radius-5);
+        color: var(--primary);
+
+        // width: 50px;
+        padding-inline: var(--spacer-3);
+        height: 24px;
+        display: block;
+        text-align: center;
+        margin-right: var(--spacer-3);
+      }
+    }
+
+    .exportPopupButton {
+      background-color: var(--white);
+      border-radius: 50%;
+      border: none;
+      color: var(--primary);
+
+      padding-inline: var(--spacer-3);
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        animation: exportWaveAnimation 1000ms infinite ease-in-out alternate;
+      }
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@keyframes exportWaveAnimation {
+  0% {
+    border: 1px solid rgba($color: var(--primary), $alpha: 0.5);
+    box-shadow: 0 0 0 0.5rem rgba($color: #fff, $alpha: 0.2);
+  }
+  100% {
+    border: 1px solid rgba($color: var(--primary), $alpha: 0.5);
+    box-shadow: 0 0 0 0.1rem rgba($color: #fff, $alpha: 0.2);
+  }
+  // 100% {
+  //   border: 1px solid rgba($color: var(--primary), $alpha: 0.5);
+  //   box-shadow: 0 0 0 0.5rem rgba($color: #fff, $alpha: 0.2);
+  // }
+}

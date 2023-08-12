@@ -1,0 +1,49 @@
+.topNavBarHeader {
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: 200px;
+  padding-inline: var(--spacer-5);
+  // margin-bottom: calc(10vh - 200px - calc(var(--spacer-5) * 2));
+  margin-bottom: calc(var(--main-nav-height) - 200px - var(--spacer-6));
+
+  .mainNavBarWrapper {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .leftSection {
+      .logoWrapper {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 55px;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .rightSection {
+      .avatar {
+        width: 45px;
+        height: 45px;
+
+        border-radius: 50%;
+        background-color: var(--gray-500);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 20px;
+          height: 20px;
+          path {
+            fill: var(--white);
+          }
+        }
+      }
+    }
+  }
+}

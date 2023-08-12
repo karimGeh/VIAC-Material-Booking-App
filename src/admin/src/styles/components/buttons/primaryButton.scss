@@ -1,0 +1,38 @@
+.primaryButton {
+  width: 100%;
+  height: 45px;
+
+  border: none;
+  border-radius: var(--border-radius-2);
+
+  background-color: var(--green);
+  color: var(--white);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .primaryButtonLoading {
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid var(--white);
+    border-radius: 50%;
+
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+
+    margin-right: var(--spacer-2);
+
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
