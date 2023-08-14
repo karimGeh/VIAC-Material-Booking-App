@@ -19,7 +19,10 @@ export const getMaterialById: RequestParamHandler = async (
   if (!isValidObjectId(id)) {
     throw new BadRequestError("Invalid id");
   }
-  const material = await Material.findById(id).populate(["type"]);
+  const material = await Material.findById(id).populate([
+    "type",
+    "compatibleWith",
+  ]);
   req.q_material = material;
   return material ? next() : next(new NotFoundError());
 };
@@ -53,9 +56,7 @@ export const getReservationById: RequestParamHandler = async (
     "owner",
     {
       path: "material",
-      populate: {
-        path: "type",
-      },
+      populate: ["type", "compatibleWith"],
     },
   ]);
   req.q_reservation = reservation;

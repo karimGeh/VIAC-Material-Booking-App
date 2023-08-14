@@ -27,6 +27,34 @@ export const getNoneReturnedMaterialByUser: RequestHandler = async (
   });
 };
 
+export const getAllReservations: RequestHandler = async (req, res) => {
+  const { pageSize = 10, pageNumber = 1 } = req.query;
+
+  const numberOfReservations = await Reservation.countDocuments({});
+
+  const reservations = await Reservation.find({})
+    // sort by newest to oldest
+    .sort({
+      createdAt: -1,
+    })
+    .populate([
+      "author",
+      "owner",
+      {
+        path: "material",
+        populate: ["type", "compatibleWith"],
+      },
+    ])
+    .limit(Number(pageSize))
+    .skip(Number(pageSize) * (Number(pageNumber) - 1));
+
+  res.send({
+    success: true,
+    reservations,
+    numberOfReservations,
+  });
+};
+
 export const getReservation: RequestHandler = async (req, res) => {
   const reservation = req.q_reservation;
   res.send({

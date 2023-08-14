@@ -1,5 +1,5 @@
 class API_ENDPOINTS {
-  static String baseUrl = "http://10.222.141.223:5000/api/v1";
+  static String baseUrl = "http://192.168.1.101:5000/api/v1";
 
   //! - User
   static String user = "$baseUrl/user";

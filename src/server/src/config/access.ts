@@ -10,6 +10,10 @@ class ACCESS {
       UserTypes.superAdmin,
     ];
   }
+
+  static get adminLogin(): UserTypes[] {
+    return [UserTypes.admin, UserTypes.superAdmin];
+  }
 }
 
 export default ACCESS;

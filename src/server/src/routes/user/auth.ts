@@ -2,6 +2,7 @@ import { Router } from "express";
 import { requireAuth } from "../../middlewares/require-auth";
 import { validateRequest } from "../../middlewares/validate-request";
 import {
+  adminLogin,
   currentUser,
   forgotPassword,
   forgotPasswordValidators,
@@ -21,6 +22,7 @@ const router = Router();
 router.get("/current-user", requireAuth, validateRequest, currentUser);
 
 router.post("/login", loginValidators, validateRequest, login);
+router.post("/admin-login", loginValidators, validateRequest, adminLogin);
 router.post("/register", registerValidators, validateRequest, register);
 router.post("/logout", logout);
 router.post(

@@ -55,6 +55,36 @@ export const login: RequestHandler = async (req, res) => {
     auth_token,
   });
 };
+export const adminLogin: RequestHandler = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({
+    $or: [{ email: email.toLowerCase() }, { code: email.toUpperCase() }],
+    // type: {
+    //   $in: ACCESS.login,
+    // },
+  });
+  if (!user) {
+    throw new NotFoundError("User not found");
+  }
+
+  if (!ACCESS.adminLogin.includes(user.type)) {
+    throw new NotFoundError("You are not allowed to login");
+  }
+
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    throw new NotFoundError("Wrong password");
+  }
+
+  const auth_token = user.generateAuthToken();
+
+  return res.status(200).send({
+    success: true,
+    user,
+    auth_token,
+  });
+};
 
 export const logout: RequestHandler = async (req, res) => {
   return res.status(200).send({

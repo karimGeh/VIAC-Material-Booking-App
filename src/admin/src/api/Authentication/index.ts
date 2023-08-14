@@ -3,7 +3,10 @@ import { LoginRequest } from "./request";
 import { LoginResponse } from "./response";
 
 const login = ApiGenerator<LoginRequest, LoginResponse>(async (body) => {
-  const response = await api.post<LoginResponse>("/user/auth/login", body);
+  const response = await api.post<LoginResponse>(
+    "/user/auth/admin-login",
+    body
+  );
   return response.data;
 });
 

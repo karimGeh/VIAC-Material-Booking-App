@@ -7,24 +7,19 @@ import {
 } from "store/reducers/api/Authentication";
 import { user_login } from "store/reducers/auth";
 
-function* loginStartSaga(
-  action: PayloadAction<LoginRequest>
-): Generator<unknown, void, unknown> {
-  const loginResponse = (yield call(
+const loginSaga = function* (action: PayloadAction<LoginRequest>) {
+  const response = (yield call(
     AuthenticationClientAPI.login,
     action.payload
   )) as Awaited<ReturnType<typeof AuthenticationClientAPI.login>>;
-
-  const { response } = loginResponse;
-
-  yield put(login_finish(loginResponse));
-  if (response) yield put(user_login(response));
-}
+  yield put(login_finish(response));
+  if (response.response) yield put(user_login(response.response));
+};
 
 function* saga() {
-  yield takeEvery<AuthenticationAction["type"], typeof loginStartSaga>(
+  yield takeEvery<AuthenticationAction["type"], typeof loginSaga>(
     "auth/login_start",
-    loginStartSaga
+    loginSaga
   );
 }
 

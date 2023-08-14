@@ -6,7 +6,7 @@ import { userRouter } from "./user";
 import { reservationsRouter } from "./reservations";
 import { materialRouter } from "./material";
 import { adminRouter } from "./admin";
-import { requireAuth } from "../middlewares/require-auth";
+import { requireAdmin, requireAuth } from "../middlewares/require-auth";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ const router = express.Router();
 router.use("/user", userRouter);
 router.use("/reservations", requireAuth, reservationsRouter);
 router.use("/materials", materialRouter);
-router.use("/admin", adminRouter);
+router.use("/admin", requireAdmin, adminRouter);
 
 // status
 router.get("/status", async (_, res) => {

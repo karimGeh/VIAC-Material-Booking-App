@@ -1,10 +1,4 @@
-export interface User {
-  id: number;
-  email: string;
-  password: string;
-  firstName: string;
-}
-
+import { User } from "api/types";
 export interface LoginResponse {
   user: User;
   auth_token: string;

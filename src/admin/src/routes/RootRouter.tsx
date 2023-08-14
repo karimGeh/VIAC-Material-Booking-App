@@ -9,6 +9,15 @@ import { Login } from "pages/auth/login";
 import { NotAuthRoute } from "./NotAuthRoute";
 import { Dashboard } from "pages/dashboard";
 import { Users } from "pages/users";
+import { EditUser } from "pages/editUser";
+import { MaterialCategories } from "pages/materialCategories";
+import { Materials } from "pages/materials";
+import { Reservations } from "pages/reservations";
+import { AddNewMaterialCategory } from "pages/addNewMaterialCategory";
+import { EditMaterialCategory } from "pages/editMaterialCategory";
+import { AddNewMaterial } from "pages/AddNewMaterial";
+import { EditMaterial } from "pages/EditMaterial";
+import { EditReservation } from "pages/EditReservation";
 
 export const RootRouter = () => {
   return (
@@ -17,11 +26,11 @@ export const RootRouter = () => {
         path={Paths.dashboard}
         element={<ProtectedRoute component={Dashboard} />}
       />
-      <Route
-        path={Paths.users}
-        element={<ProtectedRoute component={Users} />}
-      />
 
+      {UsersRoutes}
+      {MaterialCategoriesRoutes}
+      {MaterialsRoutes}
+      {ReservationsRoutes}
       {AuthRoutes}
 
       {/* redirect to catch-all route */}
@@ -39,5 +48,78 @@ const AuthRoutes = (
       path={Paths.auth_catch_all}
       element={<Navigate to={Paths.login} />}
     />
+  </>
+);
+
+const UsersRoutes = (
+  <>
+    {/* users */}
+    <Route path={Paths.users} element={<ProtectedRoute component={Users} />}>
+      <Route path={Paths.users_edit} element={<EditUser />} />
+
+      <Route
+        path={Paths.users_catch_all}
+        element={<Navigate to={Paths.users} />}
+      />
+    </Route>
+  </>
+);
+
+const MaterialCategoriesRoutes = (
+  <>
+    {/* material categories */}
+    <Route
+      path={Paths.materialCategory}
+      element={<ProtectedRoute component={MaterialCategories} />}
+    >
+      <Route
+        path={Paths.materialCategory_edit}
+        element={<EditMaterialCategory />}
+      />
+      <Route
+        path={Paths.materialCategory_add}
+        element={<AddNewMaterialCategory />}
+      />
+
+      <Route
+        path={Paths.materialCategory_catch_all}
+        element={<Navigate to={Paths.materialCategory} />}
+      />
+    </Route>
+  </>
+);
+
+const MaterialsRoutes = (
+  <>
+    {/* materials */}
+    <Route
+      path={Paths.materials}
+      element={<ProtectedRoute component={Materials} />}
+    >
+      <Route path={Paths.materials_edit} element={<EditMaterial />} />
+      <Route path={Paths.materials_add} element={<AddNewMaterial />} />
+
+      <Route
+        path={Paths.materials_catch_all}
+        element={<Navigate to={Paths.materials} />}
+      />
+    </Route>
+  </>
+);
+
+const ReservationsRoutes = (
+  <>
+    {/* reservations */}
+    <Route
+      path={Paths.reservations}
+      element={<ProtectedRoute component={Reservations} />}
+    >
+      <Route path={Paths.reservations_edit} element={<EditReservation />} />
+
+      <Route
+        path={Paths.reservations_catch_all}
+        element={<Navigate to={Paths.reservations} />}
+      />
+    </Route>
   </>
 );

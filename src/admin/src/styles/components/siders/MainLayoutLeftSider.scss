@@ -27,6 +27,7 @@
 
     z-index: 2;
     button {
+      cursor: pointer;
       height: 30px;
       width: 30px;
 
@@ -66,8 +67,10 @@
       display: flex;
       flex-wrap: nowrap;
       position: relative;
+      cursor: pointer;
       button {
         height: 60px;
+        cursor: pointer;
 
         display: flex;
         flex-wrap: nowrap;
@@ -89,6 +92,10 @@
               fill: var(--gray-700);
             }
           }
+        }
+        .text {
+          // no text wrap
+          white-space: nowrap;
         }
       }
       &:hover,

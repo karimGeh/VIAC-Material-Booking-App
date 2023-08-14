@@ -108,10 +108,9 @@ class _ReserveAMaterialScreenState extends State<ReserveAMaterialScreen> {
             SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                itemCount: filteredMaterials.length * 10,
+                itemCount: filteredMaterials.length,
                 itemBuilder: (context, index) {
-                  return PrimaryMaterialCard(
-                      filteredMaterials[index % filteredMaterials.length]);
+                  return PrimaryMaterialCard(filteredMaterials[index]);
                 },
               ),
             )

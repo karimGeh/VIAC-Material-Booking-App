@@ -5,15 +5,25 @@ import { GlobalState, toggleLeftDrawer } from "store/reducers/global";
 import { RootStateType } from "store/types";
 import { Tabs, isTabActive } from "routes/isTabActive";
 
-import { BiChevronLeft, BiChevronRight, BiLogOut } from "react-icons/bi";
+import Paths from "routes/paths";
 
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiLogOut,
+  BiCategoryAlt,
+  BiCalendarEvent,
+} from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
 import { RiSettings5Line } from "react-icons/ri";
-import { LuUsers } from "react-icons/lu";
-import "styles/components/siders/MainLayoutLeftSider.scss";
+import { FiTool } from "react-icons/fi";
+import { FaUsers } from "react-icons/fa";
+
 import { user_logout } from "store/reducers/auth";
 import { useNavigate } from "react-router-dom";
-import Paths from "routes/paths";
+
+import "styles/components/siders/MainLayoutLeftSider.scss";
+
 const { Sider } = Layout;
 
 export const MainLayoutLeftSider: React.FC<React.PropsWithChildren> = () => {
@@ -38,8 +48,22 @@ export const MainLayoutLeftSider: React.FC<React.PropsWithChildren> = () => {
         navigate(Paths.dashboard);
         break;
 
+      case Tabs.Users:
+        navigate(Paths.users);
+        break;
+
       case Tabs.Settings:
         navigate(Paths.settings);
+        break;
+
+      case Tabs.Materials:
+        navigate(Paths.materials);
+        break;
+      case Tabs.MaterialCategory:
+        navigate(Paths.materialCategory);
+        break;
+      case Tabs.Reservations:
+        navigate(Paths.reservations);
         break;
 
       default:
@@ -85,15 +109,57 @@ export const MainLayoutLeftSider: React.FC<React.PropsWithChildren> = () => {
               </button>
             </div>
           </Tooltip>
-          <Tooltip title="Dashboard" placement="right">
+          <Tooltip title="Users" placement="right">
             <div
               className={`linkWrapper ${isTabActive(Tabs.Users) && "active"}`}
             >
               <button onClick={onTabClick(Tabs.Users)}>
                 <div className="iconWrapper">
-                  <LuUsers className="icon" />
+                  <FaUsers className="icon" />
                 </div>
                 <div className="text">Users</div>
+              </button>
+            </div>
+          </Tooltip>
+          <Tooltip title="Material Categories" placement="right">
+            <div
+              className={`linkWrapper ${
+                isTabActive(Tabs.MaterialCategory) && "active"
+              }`}
+            >
+              <button onClick={onTabClick(Tabs.MaterialCategory)}>
+                <div className="iconWrapper">
+                  <BiCategoryAlt className="icon" />
+                </div>
+                <div className="text">Material Categories</div>
+              </button>
+            </div>
+          </Tooltip>
+          <Tooltip title="Materials" placement="right">
+            <div
+              className={`linkWrapper ${
+                isTabActive(Tabs.Materials) && "active"
+              }`}
+            >
+              <button onClick={onTabClick(Tabs.Materials)}>
+                <div className="iconWrapper">
+                  <FiTool className="icon" />
+                </div>
+                <div className="text">Materials</div>
+              </button>
+            </div>
+          </Tooltip>
+          <Tooltip title="Reservations" placement="right">
+            <div
+              className={`linkWrapper ${
+                isTabActive(Tabs.Reservations) && "active"
+              }`}
+            >
+              <button onClick={onTabClick(Tabs.Reservations)}>
+                <div className="iconWrapper">
+                  <BiCalendarEvent className="icon" />
+                </div>
+                <div className="text">Reservations</div>
               </button>
             </div>
           </Tooltip>

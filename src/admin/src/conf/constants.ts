@@ -1,5 +1,5 @@
 export const constants = {
-  leftDrawerWidthOpen: 200,
+  leftDrawerWidthOpen: 250,
   leftDrawerWidthClosed: 70,
 
   rightDrawerWidthOpen: 300,
