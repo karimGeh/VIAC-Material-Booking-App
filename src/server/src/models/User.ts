@@ -50,6 +50,9 @@ export const userSchema = new mongoose.Schema<UserDoc>(
     },
     phoneNum: {
       type: String,
+      unique: true,
+      // allow duplicate null values
+      sparse: true,
     },
   },
   {

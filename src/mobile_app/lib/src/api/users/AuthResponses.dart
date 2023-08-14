@@ -21,3 +21,19 @@ class LoginResponse extends DefaultResponse {
     return 'LoginResponse{success: $success, auth_token: $auth_token, user: $user}';
   }
 }
+
+class RegisterResponse extends DefaultResponse {
+  bool? success;
+
+  RegisterResponse.fromHttp(http.Response response) : super.fromHttp(response);
+
+  @override
+  fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+  }
+
+  @override
+  String toString() {
+    return 'LoginResponse{success: $success}';
+  }
+}

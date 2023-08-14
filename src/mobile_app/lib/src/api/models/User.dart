@@ -14,7 +14,7 @@ class User {
   String code;
   String fullName;
   String email;
-  String phoneNum;
+  String? phoneNum;
   String type;
   String createdAt;
   String updatedAt;
@@ -30,17 +30,18 @@ class User {
     this.updatedAt,
   );
 
-  User.fromJson(Map<String, dynamic> json)
-      : this(
-          json['_id'],
-          json['code'],
-          json['fullName'],
-          json['email'],
-          json['phoneNum'],
-          json['type'],
-          json['createdAt'],
-          json['updatedAt'],
-        );
+  static fromJson(Map<String, dynamic> json) {
+    return User(
+      json['_id'],
+      json['code'],
+      json['fullName'],
+      json['email'],
+      json['phoneNum'] ?? '',
+      json['type'],
+      json['createdAt'],
+      json['updatedAt'],
+    );
+  }
 
   get id => _id;
 

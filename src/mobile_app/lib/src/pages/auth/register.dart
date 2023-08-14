@@ -2,6 +2,9 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/src/api/users/AuthClientAPI.dart';
+import 'package:mobile_app/src/api/users/AuthRequests.dart';
+import 'package:mobile_app/src/api/users/AuthResponses.dart';
 import 'package:mobile_app/src/component/buttons/PrimaryButtonFill.dart';
 import 'package:mobile_app/src/component/inputs/PrimaryInput.dart';
 import 'package:mobile_app/src/layouts/ScreenWithAppBar.dart';
@@ -19,8 +22,15 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // form key
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<String, dynamic> state = {
+    "username": '',
+    "code": '',
+    "email": '',
+    "password": '',
+    "confirmPassword": '',
+    "phoneNumber": '',
+  };
+
   // email controller
   final TextEditingController _emailController = TextEditingController();
   // password controller
@@ -36,21 +46,93 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  // login function
-  Future<void> _signUp() async {
-    // validate form
-    if (_formKey.currentState!.validate()) {
+  onChange(String key) {
+    return (String value) {
       setState(() {
-        _isLoading = true;
+        state[key] = value;
       });
-      // send login request
-      // await loginRequest();
-      // navigate to home screen
-      Navigator.pushNamed(context, Routes.main_home);
-      setState(() {
-        _isLoading = false;
-      });
+    };
+  }
+
+  validateForm() {
+    bool valid = true;
+    if (state["username"] == '') {
+      valid = false;
     }
+    if (state["code"] == '') {
+      valid = false;
+    }
+    if (state["email"] == '') {
+      valid = false;
+    }
+    if (state["password"] == '') {
+      valid = false;
+    }
+    if (state["confirmPassword"] == '') {
+      valid = false;
+    }
+    if (state["phoneNumber"] == '') {
+      valid = false;
+    }
+    if (state["password"] != state["confirmPassword"]) {
+      valid = false;
+    }
+    return valid;
+  }
+
+  // login function
+  Future<void> _signUp(BuildContext context) async {
+    // validate form
+
+    if (_isLoading) {
+      return;
+    }
+
+    if (validateForm() == false) {
+      // show error
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please fill all required fields"),
+          backgroundColor: CustomColors.error,
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    RegisterResponse response = await AuthClientAPI.register(
+      RegisterRequest(
+        email: state["email"],
+        password: state["password"],
+        fullName: state["username"],
+        code: state["code"],
+        phoneNumber: state["phoneNumber"],
+      ),
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (response.errors.isNotEmpty) {
+      // show error
+      response.errors.forEach((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message),
+            backgroundColor: CustomColors.error,
+          ),
+        );
+      });
+      return;
+    }
+    Navigator.pushNamed(context, Routes.main_home);
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   void Function() navigateTo(String routeName) {
@@ -87,35 +169,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   PrimaryInput(
                     errorText: null,
                     labelText: "Username",
-                    onChanged: () {},
+                    onChanged: onChange("username"),
                     isRequired: true,
                   ),
                   const SizedBox(height: 24.0),
                   PrimaryInput(
                     errorText: null,
                     labelText: "User ID",
-                    onChanged: () {},
+                    onChanged: onChange("code"),
                     isRequired: true,
                   ),
                   const SizedBox(height: 24.0),
                   PrimaryInput(
                     errorText: null,
                     labelText: "Phone number",
-                    onChanged: () {},
+                    onChanged: onChange("phoneNumber"),
                     isRequired: true,
                   ),
                   const SizedBox(height: 24.0),
                   PrimaryInput(
                     errorText: null,
                     labelText: "Email",
-                    onChanged: () {},
+                    onChanged: onChange("email"),
                     isRequired: true,
                   ),
                   const SizedBox(height: 24.0),
                   PrimaryInput(
                     errorText: null,
                     labelText: "Password",
-                    onChanged: () {},
+                    onChanged: onChange("password"),
                     isRequired: true,
                     isPassword: true,
                   ),
@@ -123,7 +205,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   PrimaryInput(
                     errorText: null,
                     labelText: "Confirm password",
-                    onChanged: () {},
+                    onChanged: onChange("confirmPassword"),
                     isRequired: true,
                     isPassword: true,
                   ),
@@ -170,7 +252,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: PrimaryButtonFill(
                     text: "Sign up",
-                    onPressed: _signUp,
+                    onPressed: () => _signUp(context),
                   ),
                 ),
               ],

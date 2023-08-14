@@ -6,12 +6,12 @@ import { PinTypes } from "../../../enums/PinTypes";
 import ACCESS from "../../../config/access";
 
 export const register: RequestHandler = async (req, res) => {
-  const { fullName, code, phoneNum, email, password } = req.body;
+  const { fullName, code, phoneNumber, email, password } = req.body;
 
   const newUser = User.build({
     fullName,
     code,
-    phoneNum,
+    phoneNum: phoneNumber,
     email,
     password,
     type: UserTypes.pending,

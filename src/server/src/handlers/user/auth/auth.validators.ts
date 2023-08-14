@@ -8,14 +8,14 @@ export const registerValidators: ValidationChain[] = [
   body("code")
     .isLength({ min: 7, max: 10 })
     .withMessage("id must be between 7 and 10 characters")
-    .custom((value) => {
+    .custom(async (value) => {
       if (typeof value !== "string") {
         throw new Error("code must be string");
       }
 
       const code = value.toUpperCase();
 
-      const existingUser = User.findOne({ code });
+      const existingUser = await User.findOne({ code });
 
       if (existingUser) {
         throw new Error("code already exists");
@@ -23,7 +23,7 @@ export const registerValidators: ValidationChain[] = [
 
       return true;
     }),
-  body("phoneNum")
+  body("phoneNumber")
     .optional()
     .isLength({ min: 10, max: 10 })
     .isNumeric()
@@ -31,12 +31,14 @@ export const registerValidators: ValidationChain[] = [
   body("email")
     .isEmail()
     .withMessage("Email must be valid")
-    .custom((value) => {
+    .custom(async (value) => {
       if (typeof value !== "string") {
         throw new Error("email must be string");
       }
 
-      const existingUser = User.findOne({ email: value.toLocaleLowerCase() });
+      const existingUser = await User.findOne({
+        email: value.toLocaleLowerCase(),
+      });
 
       if (existingUser) {
         throw new Error("email already exists");

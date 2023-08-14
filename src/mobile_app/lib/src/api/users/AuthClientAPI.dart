@@ -14,4 +14,13 @@ class AuthClientAPI {
     );
     return LoginResponse.fromHttp(response);
   }
+
+  static Future<RegisterResponse> register(RegisterRequest request) async {
+    final response =
+        await APIGenerator.UnauthenticatedPostRequest<RegisterRequest>(
+      API_ENDPOINTS.register,
+      request,
+    );
+    return RegisterResponse.fromHttp(response);
+  }
 }
